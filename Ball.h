@@ -13,4 +13,4 @@ struct balls
 
 balls makeBall(float xPos, float yPos, float xVel, float yVel, float size, unsigned int color);
 void drawBall(const balls &ball);
-void updateBall(balls &ball);
+void updateBall(balls &ball, Player &paddle1, Player &paddle2);

@@ -3,6 +3,7 @@
 #include "Player.h"
 #include <random>
 #include <time.h>
+#include 
 using namespace sfw;
 
 balls makeBall(float xPos, float yPos, float xVel, float yVel, float size, unsigned int color)
@@ -25,8 +26,8 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 {
 	ball.xPos += ball.xVel;
 	ball.yPos += ball.yVel;
-
-	if (ball.yPos > 600 - ball.size)
+	
+	if (ball.yPos >= 600 - ball.size)
 	{
 		
 		ball.yVel *= -1;
@@ -38,20 +39,27 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 		ball.yVel *= -1;
 	}
 
-	if (ball.xPos > 800 - ball.size)
+	if (ball.xPos >= 820 - ball.size)
 	{
 		ball.xPos = 390;
 		ball.yPos = 300;
 	}
-	if (ball.xPos < 0 - ball.size)
+	if (ball.xPos <= 0 - ball.size)
 	{
 		ball.xPos = 390;
 		ball.yPos = 300;
 	}
 	
-	if (ball.yPos > paddle2.y && ball.xPos = paddle2.x)
+	if (ball.yPos <= paddle2.y + paddle2.size && ball.xPos >= paddle2.x)
 	{
 		ball.yVel *= -1;
+		ball.xVel *= -1;
+	}
+
+	if (ball.yPos >= paddle1.y  && ball.xPos < paddle1.x )
+	{
+		ball.yVel *= 1;
+		ball.xVel *= -1;
 	}
 	
 }

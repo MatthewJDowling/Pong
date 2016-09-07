@@ -9,13 +9,13 @@ void main()
 {
 	Player paddle1 = makePlayer(20, 300, 100, 'W', 'S');
 	Player paddle2 = makePlayer(780, 300, 100, 'O', 'L');
-	balls ball1 = makeBall(390, 300, 6, 6, 10, RED);
+	balls ball1 = makeBall(390, 300, 6, 6, 10, GREEN);
 
-	sfw::initContext(800, 600, "NSFW Draw");
+	initContext(800, 600, "NSFW Draw");
 
-	unsigned f = sfw::loadTextureMap("./res/tonc_font.png", 16, 6);
-	unsigned d = sfw::loadTextureMap("./res/fontmap.png", 16, 16);
-	unsigned r = sfw::loadTextureMap("./res/background.jpg");
+	unsigned f = loadTextureMap("./res/tonc_font.png", 16, 6);
+	unsigned d = loadTextureMap("./res/fontmap.png", 16, 16);
+	unsigned r = loadTextureMap("./res/background.jpg");
 
 
 	
@@ -23,12 +23,13 @@ void main()
 
 	sfw::setBackgroundColor(BLACK);
 
-	while (sfw::stepContext())
+	while (stepContext())
 	{
-		drawString(f, "Pong", 100, 600, 48, 48, 0, ' ');
-		drawTexture(r, 0, 600, 800, 600, 0, false, 0, RED);
+		drawTexture(r, 0, 600, 800, 600, 0, false, 0, BLUE);
+		drawString(f, "Score: %d to %d", 320, 600, 36, 36, 0, ' ', BLUE);
 		
-		updateBall(ball1);
+		
+		updateBall(ball1,paddle1,paddle2);
 		drawBall(ball1);
 
 		updatePlayer(paddle2);
