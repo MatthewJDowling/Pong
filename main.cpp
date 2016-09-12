@@ -20,8 +20,8 @@ void main()
 	unsigned d = loadTextureMap("./res/fontmap.png", 16, 16);
 	unsigned r = loadTextureMap("./res/background.jpg");
 
-	int score1 = 0;
-	int score2 = 0;
+	int score1 = 2;
+	int score2 = 2;
 	
 	
 

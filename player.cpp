@@ -19,7 +19,7 @@ void updatePlayer(Player &paddle)
 	{
 		if (paddle.y > 0) 
 		{
-			paddle.y -= 10;
+			paddle.y -= 5;
 		}
 		else 
 		{
@@ -31,7 +31,7 @@ void updatePlayer(Player &paddle)
 	{
 		if (paddle.y < 500)
 		{
-			paddle.y += 10;
+			paddle.y += 5;
 		}
 		else
 		{
