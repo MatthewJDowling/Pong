@@ -3,14 +3,14 @@
 #include "Player.h"
 #include <random>
 #include <time.h>
-#include 
+
 using namespace sfw;
 
 balls makeBall(float xPos, float yPos, float xVel, float yVel, float size, unsigned int color)
 {
 
 
-	srand(time(NULL));
+	
 	balls ball;
 	ball.xPos = xPos; 
 	ball.yPos = yPos;

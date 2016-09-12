@@ -99,6 +99,7 @@ namespace sfw
 	// tint			  : a hex color value applied as a tint to the texture
 	// transform	  : a 4x4 transformation matrix, applied as a parent transform
 	void drawString(unsigned handle, const char *text, float x, float y, float width = 1, float height = 1, float angle = 0, char offset = '\0', unsigned int tint = WHITE, const float transform[16] = identity);
+	
 
 	// draws just the diagonal line of a quad, using the transformation matrix to buff it out
 	// tint			  : hex color value
