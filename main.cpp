@@ -20,8 +20,8 @@ void main()
 	unsigned d = loadTextureMap("./res/fontmap.png", 16, 16);
 	unsigned r = loadTextureMap("./res/background.jpg");
 
-	int score1 = 2;
-	int score2 = 2;
+	int score1 = 0;
+	int score2 = 0;
 	
 	
 
@@ -31,7 +31,7 @@ void main()
 	{
 		
 		drawTexture(r, 0, 600, 800, 600, 0, false, 0, BLUE);
-		drawString(f, "Score: %d to %d",score1,score2,320, 500, 36, 36, 0, ' ', BLUE);
+		drawString(f,score1,score2,200, 600, 36, 36, ' ', BLUE);
 		
 		
 		updateBall(ball1,paddle1,paddle2);
