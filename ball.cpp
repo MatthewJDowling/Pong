@@ -6,6 +6,9 @@
 
 using namespace sfw;
 
+
+
+
 float randRange(int min, int max)
 {
 	srand(time(0));
@@ -20,12 +23,35 @@ balls makeBall(float xPos, float yPos, float xVel, float yVel, float size, unsig
 	balls ball;
 	ball.xPos = xPos; 
 	ball.yPos = yPos;
-	ball.xVel = randRange(1, 7);
-	ball.yVel = randRange(1, 7);
+	ball.xVel = randRange(7, 10);
+	ball.yVel = randRange(7, 10);
 	ball.size = size;
 	ball.color = color;
-
+	
 	return ball; 
+
+	
+}
+
+int getP1Score(balls &ball, Player &paddle1)
+{
+
+	if (ball.xPos >= 800 - ball.size)
+	{
+		
+		paddle1.score++;
+		return paddle1.score;
+	}
+}
+
+int getP2Score(balls &ball, Player &paddle2)
+{
+	if (ball.xPos < 0 - ball.size)
+	{
+
+		paddle2.score++;
+		return paddle2.score;
+	}
 }
 
 void updateBall(balls &ball, Player &paddle1, Player &paddle2)
@@ -49,11 +75,17 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 	{
 		ball.xPos = 390;
 		ball.yPos = 300;
+		ball.xVel = randRange(7, 10);
+		ball.yVel = randRange(7, 10);
+		paddle2.score++;
 	}
 	if (ball.xPos <= 0 - ball.size)//spawn in the middle after scoring
 	{
 		ball.xPos = 390;
 		ball.yPos = 300;
+		ball.xVel = randRange(7, 10);
+		ball.yVel = randRange(7, 10);
+		paddle1.score++;
 	}
 	
 	if (ball.xPos + ball.size > paddle2.x &&

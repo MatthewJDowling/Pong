@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "sfwdraw.h"
 using namespace sfw;
-Player makePlayer(float x, float y, float size, char upKey, char downKey)
+Player makePlayer(float x, float y, float size, char upKey, char downKey, int score)
 {
 	Player paddle; 
 	paddle.x = x;
@@ -9,6 +9,7 @@ Player makePlayer(float x, float y, float size, char upKey, char downKey)
 	paddle.size = size;
 	paddle.upKey = upKey;
 	paddle.downKey = downKey;
+	paddle.score = score;
 
 	return paddle;
 }

@@ -1,11 +1,13 @@
 #include "utils.h"
 #include <cstdio>
-
+#include "Player.h"
+#include "Ball.h"
+#include "Score.h"
 void drawString(unsigned handle, int score1, int score2, float x, float y,
 								float width, float height, char offset, unsigned int tint)
 {
 	char buffer[64];
-
+	
 	sprintf_s(buffer, "Score: %d to %d", score1,score2);
 
 	sfw::drawString(handle, buffer,x,y,width,height, 0, offset, tint);

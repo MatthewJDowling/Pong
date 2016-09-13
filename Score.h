@@ -1,6 +1,9 @@
-#pragma once
-
-
-//void drawScore(int score, int score2);
-
+//#pragma once
+//#include "utils.h"
+//
+//void drawScore(int score);
+//
+//	
+//
+//
 //void win(unsigned font);
