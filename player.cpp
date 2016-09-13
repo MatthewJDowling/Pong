@@ -3,7 +3,7 @@
 using namespace sfw;
 Player makePlayer(float x, float y, float size, char upKey, char downKey, int score)
 {
-	Player paddle; 
+	Player paddle; //making the attributes of the paddle
 	paddle.x = x;
 	paddle.y = y;
 	paddle.size = size;
