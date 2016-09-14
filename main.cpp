@@ -1,54 +1,43 @@
 #include "sfwdraw.h"
-
+#include "GameState.h"
 #include "utils.h"
-
 #include "Player.h"
 #include "Ball.h"
-
+#include "Splash.h"
+#include "constdecl.h"
 using namespace sfw;
 
 
 void main()
 {
-	Player paddle1 = makePlayer(20, 300, 100, 'W', 'S',/*paddle1.score=*/0);
-	Player paddle2 = makePlayer(780, 300, 100, 'O', 'L',/*paddle2.score=*/0);
-	balls ball1 = makeBall(390, 300, 6, 6, 10, GREEN);
-
+	
 	initContext(800, 600, "NSFW Draw");
-
-	unsigned f = loadTextureMap("./res/tonc_font.png", 16, 6);
-	unsigned d = loadTextureMap("./res/fontmap.png", 16, 16);
-	unsigned r = loadTextureMap("./res/background.jpg");
-
-	
-	
+	unsigned font = sfw::loadTextureMap("./res/fontmap.png", 16, 16);
 	
 
-	sfw::setBackgroundColor(BLACK);
+	GameState gs;
+	Splash splash;
 
+	splash.init(font);
+	 // starting everything
+	APP_State state = ENTER_SPLASH;
 	while (stepContext())
 	{
-		//drawing the background and scoreboard
-		drawTexture(r, 0, 600, 800, 600, 0, false, 0, BLUE);
-		drawString(f,paddle1.score,paddle2.score,100, 600, 36, 36, ' ', BLUE);
-
+		switch (state)
+		{
+		case ENTER_SPLASH:
+			splash.init(font);
+		case SPLASH:
+			splash.draw();
+			state = splash.next();
+			break;
+		case GAME:
+			gs.init();
+			gs.update();
+			gs.draw();
+			break;
+		}
 		
 		
-		updateBall(ball1,paddle1,paddle2);
-		drawBall(ball1);
-		getP1Score(ball1,paddle1);
-		getP2Score(ball1,paddle2);
-		
-		
-		updatePlayer(paddle2);
-		drawPlayer(paddle2);
-		
-		updatePlayer(paddle1);
-		drawPlayer(paddle1);
-		
-
-		
-	
-
 	}
 }

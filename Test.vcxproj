@@ -127,16 +127,19 @@
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="deathBall.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="Splash.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="constdecl.h" />
     <ClInclude Include="deathBall.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Score.h" />
+    <ClInclude Include="Splash.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
