@@ -9,9 +9,8 @@ using namespace sfw;
 
 
 
-float randRange(int min, int max)//a function so i can get truly random numbers
+float randRange(int min, int max)//a function so i can get  random numbers
 {
-	srand(time(0));
 	return rand() % (max - min) + min;
 }
 
@@ -23,8 +22,8 @@ balls makeBall(float xPos, float yPos, float xVel, float yVel, float size, unsig
 	balls ball;
 	ball.xPos = xPos; 
 	ball.yPos = yPos;
-	ball.xVel = randRange(7, 10);
-	ball.yVel = randRange(7, 10);
+	ball.xVel = randRange(7, 10) * (randRange(0, 2) ? 1 : -1);//randRange(1, 10);
+	ball.yVel = randRange(7, 10) * (randRange(0, 2) ? 1 : -1);//randRange(1, 10);
 	ball.size = size;
 	ball.color = color;
 	
@@ -81,48 +80,67 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 
 	if (ball.xPos >= 800 - ball.size)//reseting the ball, changing the score and speed
 	{
+		
 		ball.xPos = 390;
 		ball.yPos = 300;
-		ball.xVel = randRange(7, 10);
-		ball.yVel = randRange(7, 10);
+		ball.xVel = randRange(7, 10) * (randRange(0, 2) ? 1 : -1);
+		ball.yVel = randRange(7, 10) * (randRange(0, 2) ? 1 : -1);
 		paddle2.score++;
-		ball.color = WHITE;
+		ball.color = GREEN;
 	}
 	if (ball.xPos <= 0 - ball.size)//reseting the ball, changing the score and speed
 	{
 		ball.xPos = 390;
 		ball.yPos = 300;
-		ball.xVel = randRange(7, 10);
-		ball.yVel = randRange(7, 10);
+		ball.xVel = randRange(1, 10) * (randRange(0, 2) ? 1 : -1);
+		ball.yVel = randRange(1, 10) * (randRange(0, 2) ? 1 : -1);
 		paddle1.score++;
-		ball.color = WHITE;
+		ball.color = GREEN;
 	}
 	
 	if (ball.xPos + ball.size > paddle2.x &&//collision/detction
 		ball.yPos - ball.size < paddle2.y + paddle2.size &&
 		ball.yPos + ball.size > paddle2.y)
 	{
-		ball.yVel *= 1;
-		ball.xVel *= -1;
-		ball.color = WHITE;
+		if (ball.color = RED)
+		{
+
+			ball.xVel *= -1;
+			ball.yVel += 1;
+			ball.color = GREEN;
+		}
+		else
+		{
+			ball.yVel *= 1;
+			ball.xVel *= -1;
+			ball.color = GREEN;
+		}
 	}
 
 	if (ball.xPos - ball.size < paddle1.x && //collision/dectection
 		ball.yPos - ball.size < paddle1.y + paddle1.size && 
 		ball.yPos + ball.size > paddle1.y)
 	{
-		ball.yVel *= 1;
-		ball.xVel *= -1;
-		ball.color = WHITE;
+		if (ball.color = RED)
+		{
+			ball.xVel *= -1;
+			ball.yVel += 1;
+			ball.color = GREEN;
+		}
+		else
+		{
+			ball.yVel *= 1;
+			ball.xVel *= -1;
+			ball.color = GREEN;
+		}
 	}
 
 	// calculate distance between paddle midpoint and left of ball
 	float distance = dist((ball.xPos - ball.size), ball.yPos, paddle1.x, paddle1.y + paddle1.size / 2);
 	// check if distance is within threshold for spiking
-	if (distance <= 30.0f && paddle1.spikeKeyState == Player::KEYSTATE::PRESS)
+	if (distance <= 20.0f && paddle1.spikeKeyState == Player::KEYSTATE::PRESS)
 	{
-		printf("something family friendly\n");
-		ball.xVel += 20;
+		ball.xVel = 20;
 		ball.yVel = 0;
 		ball.color = RED; 
 	}
@@ -135,10 +153,9 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 
 	//printf("%f\n", distance1);
 
-	if (distance1 <= 30.0f && paddle2.spikeKeyState == Player::KEYSTATE::PRESS)
+	if (distance1 <= 20.0f && paddle2.spikeKeyState == Player::KEYSTATE::PRESS)
 	{
-		printf("something family friendly2\n");
-		ball.xVel += 20;
+		ball.xVel = -20;
 		ball.yVel = 0;
 		ball.color = RED;
 	}

@@ -4,11 +4,16 @@
 #include "utils.h"
 #include "GameState.h"
 #include "Splash.h"
+#include <random>
+#include <ctime>
+
 using namespace sfw;
 
 
 void GameState::init()
 {
+	srand(time(0));
+
 	f = loadTextureMap("./res/tonc_font.png", 16, 6);
 	d = loadTextureMap("./res/fontmap.png", 16, 16);
 	r = loadTextureMap("./res/background.jpg");
@@ -43,13 +48,13 @@ void GameState::draw()
 
 	if (paddle1.score >= 10 || paddle2.score >= 10)
 	{
-		sfw::drawString(f, " GG Well Played! ", 75, 300, 36, 36, 0, ' ', GREEN);
-		sfw::drawString(f, " Press Enter To Restart", 65, 265, 36, 36, 0, ' ', GREEN);
+		sfw::drawString(f, " GG Well Played! ", 75, 300, 36, 36, 0, ' ', BLUE);
+		sfw::drawString(f, " Press Enter to Play", 45, 265, 36, 36, 0, ' ', BLUE);
 	}
 	else
 	{
 
-		drawString(f, paddle1.score, paddle2.score, 100, 600, 36, 36, ' ', GREEN);
+		drawString(f, paddle1.score, paddle2.score, 125, 600, 36, 36, ' ', GREEN);
 
 		drawBall(ball1);
 

@@ -17,13 +17,16 @@ Player makePlayer(float x, float y, float size, char upKey, char downKey,char sp
 	return paddle;
 }
 
+
+// <CONDITION> ? <TRUEVALUE> : <FALSEVALUE>
+
 void updatePlayer(Player &paddle)
 {
 	if (getKey(paddle.downKey))// preventing the paddle from going to far down
 	{
 		if (paddle.y > 0) 
 		{
-			paddle.y -= 5;
+			paddle.y -= 8 * ( paddle.spikeKeyState == Player::KEYSTATE::DOWN ? 0.5f : 1.0f);
 		}
 		else 
 		{
@@ -35,7 +38,7 @@ void updatePlayer(Player &paddle)
 	{
 		if (paddle.y < 500)
 		{
-			paddle.y += 5;
+			paddle.y += 8 * (paddle.spikeKeyState == Player::KEYSTATE::DOWN ? 0.5f : 1.0f);
 		}
 		else
 		{

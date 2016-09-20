@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Instruction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Splash.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="constdecl.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Instruction.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="utils.h" />
