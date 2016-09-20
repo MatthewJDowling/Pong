@@ -31,10 +31,13 @@ void main()
 			splash.draw();
 			state = splash.next();
 			break;
-		case GAME:
+		case ENTER_GAME:
 			gs.init();
+
+		case GAME:
 			gs.update();
 			gs.draw();
+			state = gs.next();
 			break;
 		}
 		

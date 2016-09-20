@@ -1,7 +1,9 @@
 #include "Player.h"
 #include "sfwdraw.h"
+#include <cstdio>
+
 using namespace sfw;
-Player makePlayer(float x, float y, float size, char upKey, char downKey, int score)
+Player makePlayer(float x, float y, float size, char upKey, char downKey,char spikeKey,int score)
 {
 	Player paddle; //making the attributes of the paddle
 	paddle.x = x;
@@ -10,7 +12,8 @@ Player makePlayer(float x, float y, float size, char upKey, char downKey, int sc
 	paddle.upKey = upKey;
 	paddle.downKey = downKey;
 	paddle.score = score;
-
+	paddle.spikeKey = spikeKey;
+	paddle.spikeKeyState = Player::KEYSTATE::UP;
 	return paddle;
 }
 
@@ -38,6 +41,27 @@ void updatePlayer(Player &paddle)
 		{
 			paddle.y += 0;
 		}
+	}
+
+
+	if((paddle.spikeKeyState == Player::KEYSTATE::UP || paddle.spikeKeyState == Player::KEYSTATE::RELEASE) &&
+		sfw::getKey(paddle.spikeKey))
+	{
+		paddle.spikeKeyState = Player::KEYSTATE::PRESS;
+	}
+	else if ((paddle.spikeKeyState == Player::KEYSTATE::DOWN||
+		paddle.spikeKeyState == Player::KEYSTATE::PRESS) &&
+		!sfw::getKey(paddle.spikeKey))
+	{
+		paddle.spikeKeyState = Player::KEYSTATE::RELEASE;
+	}
+	else if (paddle.spikeKeyState == Player::KEYSTATE::PRESS)
+	{
+		paddle.spikeKeyState = Player::KEYSTATE::DOWN;
+	}
+	else if (paddle.spikeKeyState == Player::KEYSTATE::RELEASE)
+	{
+		paddle.spikeKeyState = Player::KEYSTATE::UP;
 	}
 }
 

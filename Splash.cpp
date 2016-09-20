@@ -21,7 +21,7 @@ APP_State Splash::next()
 {
 	if (getKey(KEY_ENTER))
 	{
-		return GAME;
+		return ENTER_GAME;
 	}
 	else
 	{

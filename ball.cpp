@@ -54,6 +54,14 @@ int getP2Score(balls &ball, Player &paddle2)
 	}
 }
 
+float dist(float x1, float y1, float x2, float y2)
+{
+	float term1 = (x1 - x2) * (x1 - x2);
+	float term2 = (y1 - y2) * (y1 - y2);
+
+	return sqrt(term1 + term2);
+}
+
 void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 {
 	ball.xPos += ball.xVel;
@@ -78,6 +86,7 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 		ball.xVel = randRange(7, 10);
 		ball.yVel = randRange(7, 10);
 		paddle2.score++;
+		ball.color = WHITE;
 	}
 	if (ball.xPos <= 0 - ball.size)//reseting the ball, changing the score and speed
 	{
@@ -86,6 +95,7 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 		ball.xVel = randRange(7, 10);
 		ball.yVel = randRange(7, 10);
 		paddle1.score++;
+		ball.color = WHITE;
 	}
 	
 	if (ball.xPos + ball.size > paddle2.x &&//collision/detction
@@ -94,6 +104,7 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 	{
 		ball.yVel *= 1;
 		ball.xVel *= -1;
+		ball.color = WHITE;
 	}
 
 	if (ball.xPos - ball.size < paddle1.x && //collision/dectection
@@ -102,8 +113,40 @@ void updateBall(balls &ball, Player &paddle1, Player &paddle2)
 	{
 		ball.yVel *= 1;
 		ball.xVel *= -1;
+		ball.color = WHITE;
 	}
-	
+
+	// calculate distance between paddle midpoint and left of ball
+	float distance = dist((ball.xPos - ball.size), ball.yPos, paddle1.x, paddle1.y + paddle1.size / 2);
+	// check if distance is within threshold for spiking
+	if (distance <= 30.0f && paddle1.spikeKeyState == Player::KEYSTATE::PRESS)
+	{
+		printf("something family friendly\n");
+		ball.xVel += 20;
+		ball.yVel = 0;
+		ball.color = RED; 
+	}
+
+	// PAD MID and RIGHT OF BALL
+	float distance1 = dist((ball.xPos + ball.size),
+							ball.yPos,
+							paddle2.x,
+							paddle2.y + paddle2.size / 2);
+
+	//printf("%f\n", distance1);
+
+	if (distance1 <= 30.0f && paddle2.spikeKeyState == Player::KEYSTATE::PRESS)
+	{
+		printf("something family friendly2\n");
+		ball.xVel += 20;
+		ball.yVel = 0;
+		ball.color = RED;
+	}
+	// UP		// not pressed at all
+	// PRESS	// first frame pressed
+	// HOLD		// continous pressing
+	// RELEASE  // first frame up
+
 }
 
 

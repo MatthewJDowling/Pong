@@ -126,7 +126,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
-    <ClCompile Include="deathBall.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
@@ -136,7 +135,6 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="constdecl.h" />
-    <ClInclude Include="deathBall.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
